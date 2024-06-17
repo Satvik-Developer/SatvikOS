@@ -7,7 +7,7 @@
     .long CHECKSUM
 
 .section .text
-.extern kernelMain
+.extern kernelMain # Reference to the kernelmain function in kernel.cpp
 .extern callConstructors
 .global loader
 
@@ -16,7 +16,7 @@ loader:
     call callConstructors
     push %eax
     push %ebx
-    call kernelMain
+    call kernelMain # calling the kernelmain function in kernel.cpp
 
 _stop:
     cli

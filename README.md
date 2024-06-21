@@ -19,3 +19,6 @@
 - UI
 - File System
 - Networking
+# Changes 
+- Updated Printf To handle multiple lines
+- Added and finished ports

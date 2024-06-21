@@ -1,6 +1,6 @@
 GPPPARAMS = -m32 -fno-use-cxa-atexit -nostdlib -fno-builtin -fno-rtti -fno-exceptions -fno-leading-underscore
 ASPARAMS = --32
-objects = loader.o gdt.o kernel.o
+objects = loader.o gdt.o port.o kernel.o
 LDPARAMS = -melf_i386
 
 %.o: %.cpp
@@ -18,9 +18,9 @@ mykernel.iso: mykernel.bin
 	mkdir iso/boot
 	mkdir iso/boot/grub
 	cp $< iso/boot
-	echo 'set timeout=0'> iso/boot/grub/grub.cfg
-	echo 'set default=0' >> iso/boot/grub/grub.cfg
-	echo 'menuentry "Satvik OS"{'>> iso/boot/grub/grub.cfg
+	echo 'set timeout=10'> iso/boot/grub/grub.cfg
+	echo 'set default=10' >> iso/boot/grub/grub.cfg
+	echo 'menuentry "Satvik OS Made By Meow"{'>> iso/boot/grub/grub.cfg
 	echo 'multiboot /boot/mykernel.bin' >> iso/boot/grub/grub.cfg
 	echo 'boot' >> iso/boot/grub/grub.cfg
 	echo '}' >> iso/boot/grub/grub.cfg
@@ -29,4 +29,7 @@ mykernel.iso: mykernel.bin
 
 run: mykernel.iso
 	(killall VirtualBox && sleep 1) || true
-	VirtualBox --starvm "Satvik OS" &
+	VBoxManage startvm "Satvik OS"
+.PHONY: clean
+clean:
+	rm -f $(objects) mykernel.bin mykernel.iso

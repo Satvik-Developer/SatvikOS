@@ -1,0 +1,7 @@
+#include"interrupts.h"
+void printf(char* str);
+uint32_t InterruptManger::handleInterrupt(uint8_t interruptNumber,uint32_t esp)
+{
+    printf("INTERRUPTS");
+    return esp;
+};

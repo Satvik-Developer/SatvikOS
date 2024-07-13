@@ -5,7 +5,7 @@
 
 #include "types.h" // Refenrence TO TYPES
 #include "gdt.h"  // Reference To the Global Descriptor Table
-
+#include"interrupts.h"
 
 // PrintF fucntion 
 // Its very basic one because making a real one would take a lot of time
@@ -67,5 +67,7 @@ extern "C" void kernelMain(const void* multiboot_strcture, uint32_t /* magicnumb
     printf("Please Wait \n");
     printf("Hello World ------------------ My Own Operating System ------------ Made By Satvik"); // A little bit styling for fun funna fun
     GlobalDescriptorTable gdt;
+    InterruptManager interrupts(0x20, &gdt);
+    interrupts.Activate();
     while(1); // Infinite loop so that the os does not crash immediate 
 }

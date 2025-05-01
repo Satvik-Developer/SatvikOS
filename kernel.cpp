@@ -64,7 +64,7 @@ would be able to actually call it */
 extern "C" void kernelMain(const void* multiboot_strcture, uint32_t /* magicnumber*/)
 {
     printf("Initialising The OS \n");
-    printf("Please Wait \n");
+    printf("Please Wait For a moment\n");
     printf("Hello World ------------------ My Own Operating System ------------ Made By Satvik"); // A little bit styling for fun funna fun
     GlobalDescriptorTable gdt;
     InterruptManager interrupts(0x20, &gdt);
